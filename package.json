@@ -1,0 +1,31 @@
+{
+  "name": "ytu-blockchain-step-2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "izle": "vitest",
+    "b1": "node bolum-1/proje-gas-raporu.js",
+    "b2": "tsx bolum-2/proje-islem-raporu.ts",
+    "b3": "tsx bolum-3/proje-kulup-kasasi.ts",
+    "cuzdan": "tsx bolum-4/cuzdan-kontrol.ts",
+    "tip-kontrol": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "viem": "^2.57.13"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

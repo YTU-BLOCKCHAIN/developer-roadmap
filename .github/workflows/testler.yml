@@ -1,0 +1,45 @@
+name: Step 2 Testleri
+
+on:
+  pull_request:
+    branches: [step-2]
+  push:
+    branches: [step-2]
+
+permissions:
+  contents: read
+
+jobs:
+  testler:
+    name: Bölüm ${{ matrix.bolum }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        bolum: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm vitest run bolum-${{ matrix.bolum }}
+
+  tip-kontrolu:
+    name: Tip kontrolü
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm tip-kontrol
